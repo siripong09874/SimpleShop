@@ -1,0 +1,13 @@
+c:\users\cf300847\source\repos\SimpleShop\SimpleShop\bin\Debug\SimpleShop.exe.config
+c:\users\cf300847\source\repos\SimpleShop\SimpleShop\bin\Debug\SimpleShop.exe
+c:\users\cf300847\source\repos\SimpleShop\SimpleShop\bin\Debug\SimpleShop.pdb
+c:\users\cf300847\source\repos\SimpleShop\SimpleShop\bin\Debug\Newtonsoft.Json.dll
+c:\users\cf300847\source\repos\SimpleShop\SimpleShop\bin\Debug\Newtonsoft.Json.xml
+c:\users\cf300847\source\repos\SimpleShop\SimpleShop\obj\Debug\SimpleShop.Dialogs.ProductForm.resources
+c:\users\cf300847\source\repos\SimpleShop\SimpleShop\obj\Debug\SimpleShop.Dialogs.PromotionForm.resources
+c:\users\cf300847\source\repos\SimpleShop\SimpleShop\obj\Debug\SimpleShop.Shop.resources
+c:\users\cf300847\source\repos\SimpleShop\SimpleShop\obj\Debug\SimpleShop.Properties.Resources.resources
+c:\users\cf300847\source\repos\SimpleShop\SimpleShop\obj\Debug\SimpleShop.csproj.GenerateResource.Cache
+c:\users\cf300847\source\repos\SimpleShop\SimpleShop\obj\Debug\SimpleShop.csproj.CoreCompileInputs.cache
+c:\users\cf300847\source\repos\SimpleShop\SimpleShop\obj\Debug\SimpleShop.exe
+c:\users\cf300847\source\repos\SimpleShop\SimpleShop\obj\Debug\SimpleShop.pdb
