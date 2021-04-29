@@ -554,7 +554,7 @@ namespace SimpleShop
             decimal sumTotal = salesList.Sum(s => s.totalPrice);
 
             totalPriceValueLabel.Text = sumTotal.ToString("#.##");
-            totalPriceInculdeVatValueLabel.Text= (sumTotal * VatRatio).ToString("#.##");
+            totalPriceInculdeVatValueLabel.Text = (sumTotal * VatRatio).ToString("#.##");
 
 
         }
@@ -584,7 +584,10 @@ namespace SimpleShop
 
             if (promotion != null)
             {
-                saleProduct.productPromotionDiscountSalesPrice = promotion.productPromotionPrice;
+                if (promotion.productPromotionPrice <= 0)
+                    saleProduct.productPromotionDiscountSalesPrice = null;
+                else
+                    saleProduct.productPromotionDiscountSalesPrice = promotion.productPromotionPrice;
             }
 
             //return promotion;
@@ -597,39 +600,77 @@ namespace SimpleShop
             {
                 priceApplicableList = new List<PriceApplicable>();
 
-                var query = from product in productList
-                            join promotion in promotionList on product.id equals promotion.productId into ds
-                            from promotion in ds.DefaultIfEmpty()
-                            where priceApplicableDateTimePicker.Value.Date >= promotion.startDate
-                            & priceApplicableDateTimePicker.Value.Date <= promotion.endDate
-                            select new PriceApplicable()
-                            {
-                                //productId = product.id
-                                // ,
-                                productCode = product.productCode
-                                ,
-                                productName = product.productName
-                                ,
-                                slogan = product.slogan
-                                ,
-                                productNetPrice = product.productNetPrice
-                                ,
-                                productSalesPrice = product.productSalesPrice
-                                ,
-                                promotionCode = promotion.promotionCode
-                                ,
-                                promotionName = promotion.promotionName
-                                ,
-                                promotionDescription = promotion.promotionDescription
-                                ,
-                                productPromotionPrice = promotion.productPromotionPrice
-                                ,
-                                startDate = promotion.startDate
-                                ,
-                                endDate = promotion.endDate
+                var query = //from promotion in promotionList
+                            // join product in productList on promotion.productId equals product.id into ds
+                            //from product in ds.DefaultIfEmpty()
+                            //where priceApplicableDateTimePicker.Value.Date >= promotion.startDate
+                            //& priceApplicableDateTimePicker.Value.Date <= promotion.endDate
+                            //select new PriceApplicable()
+                            //{
+                            //    //productId = product.id
+                            //    // ,
+                            //    productCode = product.productCode
+                            //    ,
+                            //    productName = product.productName
+                            //    ,
+                            //    slogan = product.slogan
+                            //    ,
+                            //    productNetPrice = product.productNetPrice
+                            //    ,
+                            //    productSalesPrice = product.productSalesPrice
+                            //    ,
+                            //    promotionCode = promotion.promotionCode
+                            //    ,
+                            //    promotionName = promotion.promotionName
+                            //    ,
+                            //    promotionDescription = promotion.promotionDescription
+                            //    ,
+                            //    productPromotionPrice = promotion.productPromotionPrice
+                            //    ,
+                            //    startDate = promotion.startDate
+                            //    ,
+                            //    endDate = promotion.endDate
 
 
-                            };
+                //};
+
+                from product in productList
+
+                from promotion in promotionList
+
+
+                .Where(pro => priceApplicableDateTimePicker.Value.Date >= pro.startDate
+                & priceApplicableDateTimePicker.Value.Date <= pro.endDate
+                & product.id == pro.id).DefaultIfEmpty()
+                select new PriceApplicable()
+                {
+                    //productId = product.id
+                    // ,
+                    productCode = product.productCode
+                    ,
+                    productName = product.productName
+                    ,
+                    slogan = product.slogan
+                    ,
+                    productNetPrice = product.productNetPrice
+                    ,
+                    productSalesPrice = product.productSalesPrice
+                    ,
+                    promotionCode = (promotion == null ? "" : promotion.promotionCode)
+
+                    ,
+                    promotionName = (promotion == null ? "" : promotion.promotionName)
+                    ,
+                    promotionDescription = (promotion == null ? "" : promotion.promotionDescription)
+                    ,
+                    productPromotionPrice = (promotion == null ? 0 : promotion.productPromotionPrice)
+                    //,
+                    //startDate = (promotion == null ? null : promotion.startDate)
+                    //,
+                    //endDate = (promotion == null ? null: promotion.endDate)
+
+
+                };
 
                 priceApplicableList = query.ToList();
 
@@ -701,17 +742,17 @@ namespace SimpleShop
                     string directoryPath = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Data");
 
                     string productTextFile = Path.Combine(directoryPath, productFileName);
-                    if (File.Exists(productTextFile))                                      
+                    if (File.Exists(productTextFile))
                         File.Delete(productTextFile);
-                                       
+
 
                     string promotionTextFile = Path.Combine(directoryPath, promotionFileName);
 
                     if (File.Exists(promotionTextFile))
-                                     
+
                         File.Delete(promotionTextFile);
 
-                    
+
                 }
 
                 catch (Exception ex)
@@ -722,7 +763,7 @@ namespace SimpleShop
                 MessageBox.Show("Product and Promotion are deleted"
                            , "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-          
+
         }
 
         private void clearPromotionDataButton_Click(object sender, EventArgs e)
@@ -750,11 +791,11 @@ namespace SimpleShop
 
                     string promotionTextFile = Path.Combine(directoryPath, promotionFileName);
 
-                    if (File.Exists(promotionTextFile))                  
-                        File.Delete(promotionTextFile);               
+                    if (File.Exists(promotionTextFile))
+                        File.Delete(promotionTextFile);
                 }
 
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw new Exception(ex.Message);
                 }
@@ -762,7 +803,7 @@ namespace SimpleShop
                 MessageBox.Show("Promotion are deleted"
                            , "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
+
         }
     }
 }

@@ -32,8 +32,8 @@ namespace SimpleShop.Models
 
         public decimal productPromotionPrice { get; set; }
 
-        public DateTime startDate { get; set; }
+        //public DateTime? startDate { get; set; }
 
-        public DateTime endDate { get; set; }
+        //public DateTime? endDate { get; set; }
     }
 }

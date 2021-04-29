@@ -11,3 +11,4 @@ c:\users\cf300847\source\repos\SimpleShop\SimpleShop\obj\Debug\SimpleShop.csproj
 c:\users\cf300847\source\repos\SimpleShop\SimpleShop\obj\Debug\SimpleShop.csproj.CoreCompileInputs.cache
 c:\users\cf300847\source\repos\SimpleShop\SimpleShop\obj\Debug\SimpleShop.exe
 c:\users\cf300847\source\repos\SimpleShop\SimpleShop\obj\Debug\SimpleShop.pdb
+C:\Users\cf300847\source\repos\SimpleShop\SimpleShop\obj\Debug\SimpleShop.csprojResolveAssemblyReference.cache
